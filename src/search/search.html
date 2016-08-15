@@ -1,0 +1,35 @@
+<div class="container">
+    <form ng-submit="vm.searchTweet()">
+        <div class="row">
+            <div id="custom-search-input">
+                <div class="input-group col-md-6">
+                    <input type="text" class="  search-query form-control" placeholder="Search Tweets" ng-model="vm.searchQuery"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-danger" type="submit">
+                        <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+                </div>
+             </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="spinner" ng-show="vm.isLoader"></div>
+            <div ng-repeat="searchedData in vm.searchResults" ng-if="!vm.isLoader" class="tweetContainer">
+                <div class="row">
+                    <span class="col-md-1">
+                         <img class="media-object" ng-src="{{searchedData.user.profile_image_url}}" alt="Profile Picture"/>
+                     </span>
+                    <div class="col-md-8 contentText">
+                        <h4 class="media-heading" ng-bind="searchedData.user.name"></h4>
+                        <p ng-bind="searchedData.text"></p>
+                    </div>
+                </div>
+                <span>
+                    <img ng-src="{{searchedData.extended_entities.media[0].media_url}}" class="contentImg" alt=""/>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
